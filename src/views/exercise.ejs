@@ -1,0 +1,44 @@
+<%- include("includes/head") %>
+<%- include("includes/navbar") %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+
+        <div class="col-lg-8 my-3">
+            <h1 class="text-center">Meus exercícios!</h1>
+            <p class="text-center lead">Tenha acesso a todos os seus exercícios deste treino.</p>
+
+            <div class="my-3">
+              <a href="/training" class="text-decoration-none"><i class="fa-solid fa-arrow-left me-2"></i>Voltar</a>
+         </div>
+
+            <%- include("includes/messages") %>
+
+            <h2><%= training.name %></h2>
+          
+            <% if (exercises && exercises.length > 0) { %> 
+                <div class="responsive-table"> 
+                  <table class="table my-3"> 
+                    <% exercises.forEach((exercise) => { %>
+                        <tr>
+                            <td><%= exercise.exercise %></td>
+                            <td><a href="/training/<%= training.id %>/exercise/add/<%= exercise._id %>">Editar</a></td>
+                            <td><a href="/training/<%= training.id %>/exercise/delete/<%= exercise._id %>" class="text-danger">Excluir</a></td>
+                        </tr>
+                    <% }) %>
+                  </table> 
+                  <a href="/training/<%= training._id %>/exercise/add" class="text-success">Adicionar exercício</a>
+                </div> 
+              <% } else { %>
+                <p>Nenhum exercício encontrado.</p>
+                <a href="/training/<%= training._id %>/exercise/add" class="text-success">Adicionar exercício</a>
+              <% } %>
+              
+        </div>
+
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+
+<%- include("includes/footer") %>

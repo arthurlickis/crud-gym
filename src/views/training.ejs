@@ -1,0 +1,38 @@
+<%- include("includes/head") %>
+<%- include("includes/navbar") %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+
+        <div class="col-lg-8 my-3">
+            <h1 class="text-center">Meus treinos!</h1>
+            <p class="text-center lead">Tenha acesso a todos os seus treinos.</p>
+
+            <%- include("includes/messages") %>
+
+            <% if (trainings.length > 0) { %> 
+              <div class="responsive-table"> 
+                  <table class="table my-3"> 
+                      <% trainings.forEach((training) => { %> 
+                          <tr> 
+                              <td><%= training.name %></td> 
+                              <td><a href="/training/<%= training._id %>/exercise/" class="text-secondary">Visualizar exercícios</a></td> 
+                              <td><a href="/training/add/<%= training._id %>">Editar</a></td> 
+                              <td><a href="/training/delete/<%= training._id %>" class="text-danger">Excluir</a></td> 
+                          </tr> 
+                      <% }) %> 
+                  </table> 
+              </div>
+              <a href="/training/add" class="btn btn-success">Adicionar Treino</a>
+          <% } else { %>
+            <p>Nenhum Treino encontrado.</p>
+            <a href="/training/add" class="btn btn-success">Adicionar Treino</a>
+          <% } %>
+        </div>
+
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+
+<%- include("includes/footer") %>

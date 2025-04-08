@@ -1,0 +1,64 @@
+<%- include("includes/head") %>
+<%- include("includes/navbar") %>
+
+<div class="container">
+    <div class="col-lg-2"></div>
+
+    <div class="col-lg-8 my-3">
+        <h1 class="text-center">Meu exercício!</h1>
+        <p class="text-center lead">Adicione/altere o seu exercício.</p>
+
+       <div class="my-3">
+            <a href="/training/<%= training._id %>/exercise" class="text-decoration-none"><i class="fa-solid fa-arrow-left me-2"></i>Voltar</a>
+       </div>
+
+        <%- include("includes/messages") %>
+        
+        <% if (exercise._id) { %>
+            <form class="form-exercise" action="/training/<%= training._id %>/exercise/edit/<%= exercise._id %>" method="post">
+        <% } else { %>
+            <form class="form-exercise" action="/training/<%= training._id %>/exercise/add" method="post">
+        <% } %>
+            <fieldset>
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <div class="mb-3">
+                    <label for="nameInput" class="form-label">Exercício</label>
+                    <input type="text" id="nameInput" name="exercise" class="form-control" placeholder="Ex: Supino reto" value="<%= exercise.exercise %>">
+                </div>
+        
+                <div class="mb-3">
+                    <label for="muscleGroupInput" class="form-label">Grupo muscular</label>
+                    <select name="muscleGroup" class="form-select" aria-label="Seleção de grupo muscular">
+                        <option value="chest" <%= exercise.muscleGroup === 'chest' ? 'selected' : '' %>>Peitoral (Peito)</option>
+                        <option value="back" <%= exercise.muscleGroup === 'back' ? 'selected' : '' %>>Costas (Dorsais)</option>
+                        <option value="shoulders" <%= exercise.muscleGroup === 'shoulders' ? 'selected' : '' %>>Ombros (Deltoides)</option>
+                        <option value="arms" <%= exercise.muscleGroup === 'arms' ? 'selected' : '' %>>Braços</option>
+                        <option value="legs" <%= exercise.muscleGroup === 'legs' ? 'selected' : '' %>>Pernas</option>
+                        <option value="calves" <%= exercise.muscleGroup === 'calves' ? 'selected' : '' %>>Panturrilhas</option>
+                        <option value="core" <%= exercise.muscleGroup === 'core' ? 'selected' : '' %>>Core (Abdômen)</option>
+                      </select>                      
+                </div>
+                <div class="mb-3">
+                    <label for="setsInput" class="form-label">Séries</label>
+                    <input type="number" id="setsInput" name="sets" class="form-control" placeholder="Ex: 4"  value="<%= exercise.sets %>">
+                </div>
+                <div class="mb-3">
+                    <label for="repsInput" class="form-label">Repetições</label>
+                    <input type="number" id="repsInput" name="reps" class="form-control" placeholder="Ex: 12"  value="<%= exercise.reps %>">
+                </div>
+                <div class="mb-3">
+                    <% if (exercise._id) { %>
+                        <button type="submit" class="btn btn-primary">Editar</button>
+                    <% } else { %>
+                        <button type="submit" class="btn btn-success">Adicionar</button>
+                    <% } %>
+                </div>
+            </fieldset>
+
+        </form>
+    </div>
+
+    <div class="col-lg-2"></div>
+</div>
+
+<%- include("includes/footer") %>

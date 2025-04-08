@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-lg bg-dark">
+    <div class="container-fluid py-2">
+      <span class="navbar-brand mb-0 h1 text-white" href="#">Gerencie os seus treinos</span>
+
+      <div class="navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <% if (user) { %>
+            <li class="nav-item pe-5">
+              <a class="nav-link active text-white-50" aria-current="page" href="/training">Treinos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active text-danger" aria-current="page" href="/logout">Sair</a>
+            </li>
+          <% } %>
+        </ul>
+      </div>
+
+    </div>
+</nav>

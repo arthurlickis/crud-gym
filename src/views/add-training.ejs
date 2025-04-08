@@ -1,0 +1,45 @@
+<%- include("includes/head") %>
+<%- include("includes/navbar") %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+
+        <div class="col-lg-8 my-3">
+            <h1 class="text-center">Meus treinos!</h1>
+            <p class="text-center lead">Tenha acesso a todos os seus treinos.</p>
+
+            <div class="my-3">
+                <a href="/training/" class="text-decoration-none"><i class="fa-solid fa-arrow-left me-2"></i>Voltar</a>
+           </div>
+
+            <%- include("includes/messages") %>
+            <% if (training._id) { %>
+                <form class="form-training" action="/training/edit/<%= training._id %>" method="post">
+            <% } else { %>
+                <form class="form-training" action="/training/add" method="post">
+            <% } %>
+                <fieldset>
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <div class="mb-3">
+                        <label for="nameInput" class="form-label">Nome do treino</label>
+                        <input type="text" id="nameInput" name="name" class="form-control" placeholder="Ex: Treino A - Segunda" value="<%= training.name %>">
+                    </div>
+                   <div class="mb-3">
+                        <% if (training._id) {%>
+                            <button type="submit" class="btn btn-primary">Editar</button>
+                        <% } else { %>
+                            <button type="submit" class="btn btn-success">Criar</button>
+                        <% } %>
+                   </div>
+                </fieldset>
+            </form>
+        </div>
+            
+        </div>
+
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+
+<%- include("includes/footer") %>
