@@ -1,11 +1,12 @@
 {
-  "name": "aula-14-models",
+  "name": "crud-gym",
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js --ignore public --ignore frontend",
-    "dev": "webpack -w"
+    "start": "node server.js",
+    "_comment": "nodemon server.js --ignore public --ignore frontend",
+    "dev": "webpack -w",
+    "build": "webpack --mode production"
   },
   "keywords": [],
   "author": "",

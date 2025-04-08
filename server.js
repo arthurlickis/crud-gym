@@ -15,7 +15,6 @@ const { checkCsrf, csrfMiddleare, messagesAndSession } = require("./src/middlewa
 
 mongoose.connect(process.env.CONNECTIONSTRING)
     .then(() => {
-        console.log("Conexão foi");
         app.emit("ready");
     }) .catch(e => console.error(e.message));
 
@@ -48,9 +47,9 @@ app.use(messagesAndSession);
 
 app.use(routes);
 
+const port = process.env.PORT || 3000;
 app.on("ready", () =>{
-    app.listen(3000, () => {
-        console.log("Servidor no ar, na porta 3000!");
-        console.log("Acesse: http://localhost:3000");
+    app.listen(port, () => {
+        console.log("Bem-vindo, curioso! Servidor rodando na porta " + port);
     });
 });
